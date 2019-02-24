@@ -22,7 +22,7 @@ cat <<END >$PKGNAME/DEBIAN/control
 Package: $PRJNAME
 Version: $VERSION
 Architecture: all
-Depends: php-cli | php5-cli | php7-cli
+Depends: php-cli | php5-cli | php7-cli, mysql-client | mariadb-client
 Description: Change the URL of a WordPress site
 Homepage: https://github.com/mskuta/$PRJNAME
 Maintainer: Martin Skuta (https://github.com/mskuta)
