@@ -12,20 +12,20 @@ PREFIX="${PREFIX:-/usr/local}"
 
 # install program
 DSTDIR="$PREFIX/bin"
-mkdir --parents "$DSTDIR"
 for SRCFILE in *.bash; do
 	DSTFILE="${SRCFILE%%.*}"
-	printf '#!/usr/bin/env bash\n\n' | cat - "$SRCDIR/$SRCFILE" >"$DSTDIR/$DSTFILE"
-	chmod 755 "$DSTDIR/$DSTFILE"
+	TMPFILE="$(mktemp)"
+	printf '#!/usr/bin/env bash\n\n' | cat - "$SRCDIR/$SRCFILE" >"$TMPFILE"
+	install -D "$TMPFILE" "$DSTDIR/$DSTFILE"
+	unlink "$TMPFILE"
 done
 
 # install docs
 DSTDIR="$PREFIX/share/doc/$PRJNAME"
-mkdir --parents "$DSTDIR"
-for SRCFILE in [A-Z]*; do
+for SRCFILE in 'COPYING' 'README.md'; do
 	DSTFILE="$SRCFILE"
-	cp "$SRCDIR/$SRCFILE" "$DSTDIR/$DSTFILE"
-	chmod 644 "$DSTDIR/$DSTFILE"
+	install -D "$SRCDIR/$SRCFILE" "$DSTDIR/$DSTFILE"
+	chmod a-x "$DSTDIR/$DSTFILE"
 done
 
 exit 0
