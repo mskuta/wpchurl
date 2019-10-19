@@ -1,7 +1,7 @@
 Description
 ===========
 
-wpchurl changes the address at which a WordPress installation should be reachable. It automates the steps described [here](https://codex.wordpress.org/Changing_The_Site_URL#Changing_the_URL_directly_in_the_database "Changing the URL directly in the database") in the WordPress Codex.
+wpchurl changes the address at which a WordPress installation should be reachable. It automates the steps described [here](https://wordpress.org/support/article/changing-the-site-url/#changing-the-url-directly-in-the-database "Changing the URL directly in the database") on the official WordPress website.
 
 
 Installation
