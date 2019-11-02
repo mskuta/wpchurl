@@ -12,13 +12,12 @@ PREFIX="${PREFIX:-/usr/local}"
 
 # install program
 DSTDIR="$PREFIX/bin"
-for SRCFILE in *.bash; do
-	DSTFILE="${SRCFILE%%.*}"
-	TMPFILE="$(mktemp)"
-	printf '#!/usr/bin/env bash\n\n' | cat - "$SRCDIR/$SRCFILE" >"$TMPFILE"
-	install -D "$TMPFILE" "$DSTDIR/$DSTFILE"
-	unlink "$TMPFILE"
-done
+SRCFILE='wpchurl.bash'
+DSTFILE="${SRCFILE%%.*}"
+TMPFILE="$(mktemp)"
+printf '#!/usr/bin/env bash\n\n' | cat - "$SRCDIR/$SRCFILE" >"$TMPFILE"
+install -D "$TMPFILE" "$DSTDIR/$DSTFILE"
+unlink "$TMPFILE"
 
 # install docs
 DSTDIR="$PREFIX/share/doc/$PRJNAME"

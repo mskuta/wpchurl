@@ -7,20 +7,22 @@ wpchurl changes the address at which a WordPress installation should be reachabl
 Installation
 ============
 
-- Clone this repository.
-- Run the included installation script by entering `sudo ./install.sh`. The default target directory for the executable is `/usr/local/bin`. Use the environment variable `PREFIX` to change this. For example, to install the software under your home directory, type `PREFIX=$HOME/.local ./install.sh` and make sure `$HOME/.local/bin` is in your `$PATH`.
+1. Clone this repository: `git clone https://github.com/mskuta/wpchurl.git`
+2. Run the included installation script: `sudo wpchurl/install.sh`
 
-Debian and derivatives (f. e. Ubuntu) 
--------------------------------------
+The default target directory for the executable is `/usr/local/bin`. Use the environment variable `PREFIX` to change this. For example, to install the software under your home directory, enter `PREFIX=$HOME/.local wpchurl/install.sh` and make sure `$HOME/.local/bin` is in your `$PATH`.
 
-- Download the latest .deb package from the Releases page.
-- Install it by entering `sudo dpkg --install <.deb file name>`.
+Debian and derivatives (Ubuntu, Raspbian, etc.) 
+-----------------------------------------------
+
+1. Download the latest .deb package from the Releases page.
+2. Install it: `sudo dpkg --install wpchurl_x.y.z_all.deb`
 
 
 Usage
 =====
 
-```shell
+```
 Usage:
   wpchurl [-d DIRECTORY]
   wpchurl [-d DIRECTORY] [-HS] URL

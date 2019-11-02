@@ -15,10 +15,10 @@ if [ -z "$VERSION" ]; then
 fi
 PKGNAME=${PRJNAME}_${VERSION}_all
 cd "$SRCDIR"
-mkdir --parents $PKGNAME/DEBIAN
+mkdir --parents "$PKGNAME/DEBIAN"
 trap 'rm --recursive $PKGNAME' EXIT
 PREFIX=$PKGNAME/usr ./install.sh
-cat <<END >$PKGNAME/DEBIAN/control
+cat <<END >"$PKGNAME/DEBIAN/control"
 Package: $PRJNAME
 Version: $VERSION
 Architecture: all
@@ -29,7 +29,7 @@ Maintainer: Martin Skuta (https://github.com/mskuta)
 Priority: optional
 Section: utils
 END
-dpkg-deb --build $PKGNAME
+dpkg-deb --build "$PKGNAME"
 
 exit 0
 

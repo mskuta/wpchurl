@@ -7,12 +7,11 @@ declare -A wpoptions=([home]=true [siteurl]=true)
 directory="."
 url=""
 showusage=false
-args=$(getopt HSd:h $*)
-if [[ $? == 0 ]]; then
+if args=$(getopt HSd:h $*); then
 	set -- $args
 
 	# process optional arguments
-	while [[ $# != 0 ]]; do
+	while [[ $# -ne 0 ]]; do
 		case "$1" in
 			-H)
 				wpoptions[home]=false; shift;;
@@ -28,9 +27,9 @@ if [[ $? == 0 ]]; then
 	done
 
 	# process positional arguments
-	if [[ $# == 1 ]]; then
+	if [[ $# -eq 1 ]]; then
 		url="$1"
-	elif [[ $# > 1 ]]; then
+	elif [[ $# -gt 1 ]]; then
 		showusage=true
 	fi
 else
@@ -70,11 +69,11 @@ echo 'db_host=', constant('DB_HOST'), ';',
 END
 )"
 
-# put the database password in a temporary file so that you don't
-# have to pass it on the command line and avoid an input prompt
+# put the database password in a temporary file so that it does not
+# have to be passed on the command line and to avoid an input prompt
 mycnfpath="$(mktemp -t)"
 trap 'rm --force "$mycnfpath"' EXIT
-echo -en "[client]\npassword=$db_password\n" >"$mycnfpath"
+echo -en "[client]\\npassword=$db_password\\n" >"$mycnfpath"
 
 # change settings
 if [[ -n "$url" ]]; then
