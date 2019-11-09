@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-# provide sane environment 
+# provide sane environment
 \unalias -a
 PATH="$(getconf PATH)"
 
