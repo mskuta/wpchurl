@@ -1,8 +1,19 @@
 # This file is part of wpchurl, distributed under the ISC license.
 # For full terms see the included COPYING file.
 
+### Usage:
+###   wpchurl [-d DIRECTORY]
+###   wpchurl [-d DIRECTORY] [-HS] URL
+### Options:
+###   -H  Do not change the WordPress Address ("home").
+###   -S  Do not change the Site Address ("siteurl").
+###   -d  Directory containing the WordPress files.
+### 
+### If no DIRECTORY is specified, the current one will be used.
+### If no URL is specified, just the active settings will be displayed.
+
 set -euo pipefail
-declare -r progname="${0##*/}"
+
 declare -A wpoptions=([home]=true [siteurl]=true)
 directory="."
 url=""
@@ -36,18 +47,7 @@ else
 	showusage=true
 fi
 if [[ $showusage == true ]]; then
-	cat <<END >&2
-Usage:
-  $progname [-d DIRECTORY]
-  $progname [-d DIRECTORY] [-HS] URL
-Options:
-  -H  Do not change the WordPress Address ("home").
-  -S  Do not change the Site Address ("siteurl").
-  -d  Directory containing the WordPress files.
-
-If no DIRECTORY is specified, the current one will be used.
-If no URL is specified, just the active settings will be displayed.
-END
+	sed -n 's/^### //;T;p' "$0" >&2
 	exit 2
 fi
 if [[ ! -f "$directory/wp-config.php" ]]; then
