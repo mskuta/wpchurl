@@ -58,7 +58,7 @@ fi
 # transform PHP variables into Shell variables; sed removes possibly
 # added BOM
 eval "$(
-php <<END | sed -e $'1s/^\uFEFF//'
+php <<END | sed $'1s/^\uFEFF//'
 <?php
 include "$directory/wp-config.php";
 echo 'db_host=', constant('DB_HOST'), ';',
